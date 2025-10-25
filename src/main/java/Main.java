@@ -64,7 +64,45 @@ public class Main {
 
     }
 
+    // Mini menu with 2 options
+    public static void miniMenu(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Hello, what's your name?");
+        String username = sc.nextLine();
+
+        int option;
+
+        do{
+            clearScreen();
+            System.out.println("Hi, " + username + "!");
+            System.out.println("What do you want to do today?\n");
+            System.out.println("1. Calculate the average of a set of numbers");
+            System.out.println("2. Exit\n");
+            System.out.print("Choose an option: ");
+
+            option = sc.nextInt();
+
+            switch (option){
+                case 1:
+                    averageFunc(sc);
+                    break;
+                case 2:
+                    System.out.println("See you soon!");
+                    break;
+                default:
+                    System.out.println("Invalid option");
+                    sc.nextLine();
+                    System.out.println("Press Enter to continue...");
+                    sc.nextLine();
+                    break;
+            }
+        }while(option != 2);
+
+        sc.close();
+    }
+
     public static void main(String[] args) {
-        averageFunc(new Scanner(System.in));
+        miniMenu();
     }
 }
