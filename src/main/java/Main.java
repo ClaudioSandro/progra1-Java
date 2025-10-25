@@ -102,7 +102,67 @@ public class Main {
         sc.close();
     }
 
+    // Ask for number of employees and create an array of employees
+    public static void inputTrabajadores(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa el numero de trabajadores de tu empresa:");
+        int x = sc.nextInt();
+        sc.nextLine();
+
+        Trabajador[] trabajadores = new Trabajador[x];
+
+
+        for(int i=0; i<x; i++){
+            clearScreen();
+            System.out.println("Ingresa el nombre de cada trabajador:");
+            System.out.println("Trabajador " + (i+1));
+
+            System.out.println("nombre:");
+            String nombre = sc.nextLine();
+
+            System.out.println("edad:");
+            int edad = sc.nextInt();
+            sc.nextLine();
+
+            System.out.println("carrera:");
+            String carrera = sc.nextLine();
+
+            System.out.println("empresa:");
+            String empresa = sc.nextLine();
+
+            System.out.println("salario:");
+            double salario = sc.nextDouble();
+            sc.nextLine();
+
+            trabajadores[i] = new Trabajador(nombre, edad, carrera, empresa, salario);
+        }
+
+        for(int i=0; trabajadores.length > i; i++){
+            trabajadores[i].saludar();
+        }
+
+        // podria tener un try y catch tmb
+        System.out.println("Te gustaria seleccionar un trabajador en particular? (s/n)");
+        String decision =  sc.nextLine();
+
+        if(decision.equals("s")){
+            try{
+                clearScreen();
+                System.out.println("Ingresa el numero del trabajador que deseas seleccionar:");
+                int numTrabajador = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("Trabajador seleccionado: " + trabajadores[numTrabajador-1].nombre);
+                trabajadores[numTrabajador-1].saludar();
+            }catch(Exception e){
+                System.out.println("Error: Seleccionaste un numero que no existe en el arreglo.");
+            }
+        } else{
+            System.out.println("Adios!");
+        }
+    }
+
     public static void main(String[] args) {
-        miniMenu();
+        inputTrabajadores();
     }
 }
